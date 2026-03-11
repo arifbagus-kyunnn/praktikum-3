@@ -21,11 +21,46 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             width: 350px;
         }
+
+        /* Styling untuk Jam dan Tanggal */
+        .jam-container {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            color: white;
+        }
+        
+        .jam {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h2>Daftar Kegiatanku</h2>
     </div>
+    <div class="jam-container">
+            <p class="jam" id="jam">00:00:00</p>
+            <p id="tanggal">Memuat tanggal...</p>
+    </div>
+<script>
+        function updateWaktu() {
+            const waktu = new Date();
+            const jam = waktu.toLocaleTimeString('id-ID');
+            const tanggal = waktu.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+            
+            document.getElementById('jam').innerText = jam;
+            document.getElementById('tanggal').innerText = tanggal;
+        }
+        
+        // Memperbarui waktu setiap 1 detik
+        setInterval(updateWaktu, 1000);
+        // Panggil fungsi sekali saat halaman dimuat
+        updateWaktu();
+</script>
 </body>
 </html>
